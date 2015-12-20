@@ -1,16 +1,17 @@
 import java.util.Scanner;
+
 import static java.lang.Math.*;
 
-public class Main {
+public class Yravneniya {
 
     public static void main(String[] args) {
 
 
         System.out.println("Hello World!");
 
-        double a, b, c, d, x1, x2, T;
+        double a, b, c, d, x1, x2;
+        boolean isWrongNumber = false;
 
-        T = 0;
 
         Scanner sc = new Scanner(System.in);
 
@@ -28,20 +29,18 @@ public class Main {
             return;
         }
 
-        if (a == 0) {
-            T = 1;
-        }
-
-        if (b == 0) {
-            T = 1;
+        if (a == 0 || b == 0) {
+            isWrongNumber = true;
         }
 
         d = b * b - 4 * a * c;
 
-        if (T == 1) {
+        if (isWrongNumber == true) {
             System.out.println("Коефициенты a,b не могут быть равны нулю !!!");
+            return;
+        }
 
-        } else if (d >= 0) {
+        if (d >= 0) {
             x1 = (b + sqrt(d)) / (2 * a);
             x2 = (b - sqrt(d)) / (2 * a);
             System.out.println("x1=" + x1);
