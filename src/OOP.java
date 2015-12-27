@@ -1,6 +1,4 @@
-/**
- * Created by nazga on 20.12.2015.
- */
+
 public class OOP {
     int mozg = 0;
 
