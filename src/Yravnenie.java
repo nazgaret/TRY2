@@ -6,12 +6,46 @@ public class Yravnenie {
 
 
     double a, b, c;
+    boolean miss = false;
 
     public void launch() {
 
         checkAndScan();
-        counting(a,b,c);
-return;
+        if (miss) {
+            return;
+        }
+        counting(a, b, c);
+    }
+
+
+    private void checkAndScan() {
+
+
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+
+            System.out.println("Введите коефициент а (не равный 0 )");
+            this.a = sc.nextDouble();
+            System.out.println("Введите коефициент в (не равный 0 )");
+            this.b = sc.nextDouble();
+            System.out.println("Введите коефициент c");
+            this.c = sc.nextDouble();
+        } catch (java.util.InputMismatchException e) {
+
+            System.out.println("ВВОДИТЕ ЧИСЛА !!!");
+            miss = true;
+            return;
+        }
+
+        if (a == 0 || b == 0) {
+            System.out.println("Коефициенты a,b не могут быть равны нулю !!!");
+            miss = true;
+
+        }
+
+
     }
 
 
@@ -28,43 +62,10 @@ return;
 
         } else
             System.out.println("Дискриминант меньше нуля");
-        return;
+
     }
 
 
-
-
-    private void checkAndScan() {
-
-
-        boolean isWrongNumber = false;
-        Scanner sc = new Scanner(System.in);
-
-        try {
-
-            System.out.println("Введите коефициент а");
-            this.a = sc.nextDouble();
-            System.out.println("Введите коефициент в");
-            this.b = sc.nextDouble();
-            System.out.println("Введите коефициент c");
-            this.c = sc.nextDouble();
-        } catch (java.util.InputMismatchException e) {
-
-            System.out.println("ВВОДИТЕ ЧИСЛА !!!");
-            return;
-        }
-
-        if (a == 0 || b == 0) {
-            isWrongNumber = true;
-        }
-
-
-        if (isWrongNumber == true) {
-            System.out.println("Коефициенты a,b не могут быть равны нулю !!!");
-            return;
-
-        }
-    }
 }
 
 

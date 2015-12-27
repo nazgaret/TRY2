@@ -1,61 +1,89 @@
-/**
- * Created by nazga on 18.12.2015.
- */
 import java.util.Scanner;
 
 import static java.lang.Math.*;
 
-public class guessgame {
-    public static void main(String[] args) {
+public class GuessGame {
 
-        int b;
-        int a = (int)(random()*99+1);
+    public static final String NUMBER_TO_BIG = "ЭТО СЛИШКОМ БОЛЬШОЕ ЧИСЛО! У ТЕБЯ ОСТАЛОСЬ";
+    public static final String NUMBER_TO_LOW = "ЭТО СЛИШКОМ МАЛЕНЬКОЕ ЧИСЛО! У ТЕБЯ ОСТАЛОСЬ";
+    public static final String YOU_WIN = "КАК ТЫ СМОГ ПОБЕДИТЬ ? ЭТО ЖЕ НЕВОЗМОООЖНОООООООООО......";
+    private int tryNumber = 10;
+
+    int win = 0;
+
+    public void launch() {
+
+// Вызоы метода генерации случайного числа по уже заданным границам / начало игры.
+        int random = generateRandom();
+
 
         System.out.println("Я ХОЧУ СЫГРАТЬ С ТОБОЙ В ИГРУ.");
-        System.out.println("ТЫ ДОЛЖЕН КАКОЕ ЧИСЛО ОТ 1 ДО 100 Я ЗАГАДАЛ )");
+        System.out.println("ТЫ ДОЛЖЕН УГАДАТЬ КАКОЕ ЧИСЛО ОТ " + minimal + " ДО " + maximal + " Я ЗАГАДАЛ )");
         System.out.println("У ТЕБЯ ВСЕГО 10-ТЬ ПОПЫТОК");
 
-        int x = 10;
-        String s,s1,s2,s3;
-        Scanner sc = new Scanner(System.in);
+        // Остались попытки ? пробуем еще
 
-        s1 = "ЭТО СЛИШКОМ БОЛЬШОЕ ЧИСЛО! У ТЕБЯ ОСТАЛОСЬ";
-        s2 = "ЭТО СЛИШКОМ МАЛЕНЬКОЕ ЧИСЛО! У ТЕБЯ ОСТАЛОСЬ";
-        s3 = "КАК ТЫ СМОГ ПОБЕДИТЬ ? ЭТО ЖЕ НЕВОЗМОООЖНОООООООООО......";
+        while (tryNumber > 0) {
+            if (win == 0) {
+                doOneTry(random);
 
+            } else return;
 
-        while (x>0) {
-            x--;
-            System.out.println("ПОПРОБУЙ УГАДАТЬ: ");
-            try {
-                b = (int)sc.nextDouble();
-            }
-            catch (java.util.InputMismatchException e) {
+            //нет ? = проиграл
 
-                System.out.println("ТЫ ПРОИГРАЛ !!!");
-                return;
-            }
-            if (b==a){
-                s=s3;
-                System.out.println(s);
-                return;
-            }
-            else if (b>a) {
-                s=s1;
-                System.out.println(b+" " +s+" "+ x +"ЖИЗНЕЙ!");
-            }
-            else {
-                s = s2;
-                System.out.println(b+" " +s+" "+ x +"ЖИЗНЕЙ!");
-            }
 
         }
-
         System.out.println("ТЫ ПРОИГРАЛ !!!");
+    }
+
+    private void doOneTry(int random) {
+
+        int scanNumber;
+        tryNumber--;
 
 
+        System.out.println("ПОПРОБУЙ УГАДАТЬ: ");
 
+        try {
+            scanNumber = scanNumber();
 
+        } catch (java.util.InputMismatchException e) {
+
+            System.out.println("НЕВЕРНЫЙ ВВОД !!!");
+            return;
+        }
+        if (scanNumber == random) {
+
+            System.out.println(YOU_WIN);
+            win = 1;
+            tryNumber += 1;
+            return;
+        }
+        if (scanNumber > random) {
+
+            System.out.println(scanNumber + " " + NUMBER_TO_BIG + " " + tryNumber + " ЖИЗНЕЙ!");
+        } else {
+
+            System.out.println(scanNumber + " " + NUMBER_TO_LOW + " " + tryNumber + " ЖИЗНЕЙ!");
+        }
 
     }
+
+    private int scanNumber() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+    private int generateRandom() {
+        return (int) (random() * (maximal - minimal) + minimal);
+    }
+
+    public GuessGame(int minimal1, int maximal1) {
+        this.minimal = minimal1;
+        this.maximal = maximal1;
+
+    }
+
+    private int minimal;
+    private int maximal;
 }

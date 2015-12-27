@@ -29,13 +29,15 @@ public class Launcher {
 
             GuessGame game = new GuessGame(minimal, maximal);
             game.launch();
-        }
-        if (gameNumber == 2) {
-            Yravnenie yravnenie1 = new Yravnenie();
-            yravnenie1.launch();
-
         } else {
-            return;
+            if (gameNumber == 2) {
+                Yravnenie yravnenie1 = new Yravnenie();
+                yravnenie1.launch();
+
+            } else {
+                System.out.println("Введите 1 / 2 !");
+                return;
+            }
         }
     }
 }
