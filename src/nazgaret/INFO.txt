@@ -1,0 +1,27 @@
+//private static final BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+
+
+
+ //       System.out.println("Введите строку");
+   //     String s = stdIn.readLine();
+     //   int l = s.length();
+       // char c= 'x';
+       // int x = 100;
+       // double xd=x;
+       // x=(int)xd;
+       // float xf = 100.0f;
+
+ System.out.println("Введите номер");
+        String numS = stdIn.readLine();
+        int num;
+        try {
+            num= Integer.parseInt(numS);
+            char c=text.charAt(num);
+            System.out.println(c+" "+num);
+        }
+        catch(NumberFormatException e){
+            System.out.println( "Ти козел!");
+
+
+        }
+    }

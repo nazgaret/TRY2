@@ -1,3 +1,4 @@
+package nazgaret;
 
 public class OOP {
     int mozg = 0;
